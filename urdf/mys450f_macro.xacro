@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="deg" value="0.017453293"/> <!-- Degrees to Radians -->
+  <!-- assumption value for mass -->
+  <xacro:property name="mass0" value="1.95"/>
+  <xacro:property name="mass1" value="1.3"/>
+  <xacro:property name="mass2" value="1.8"/>
+  <xacro:property name="mass3" value="0.1"/>
+  <!-- Joint velocity and acceleration in degree -->
+  <xacro:property name="vel" value="50"/>
+  <xacro:property name="acc" value="20"/>
+
+  <xacro:macro name="motoman_mys450f" params="prefix">
+
+    <!-- link list -->
+    <link name="${prefix}base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/base_link.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/collision/base_link.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="-0.02 0.0 0.17" rpy="0 0 0" />
+        <mass value="${mass0}" />
+        <inertia
+          ixx="0.08" ixy="0.0" ixz="-0.01"
+          iyy="0.09" iyz="-0.0"
+          izz="0.01" />
+      </inertial>
+    </link>
+    <link name="${prefix}link_1_s">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_1_s.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/collision/link_1_s.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0.1 0.0 0.35" rpy="0 0 0" />
+        <mass value="${mass1}" />
+        <inertia
+          ixx="0.16" ixy="0.0" ixz="0.04"
+          iyy="0.18" iyz="0.0"
+          izz="0.03" />
+      </inertial>
+    </link>
+    <link name="${prefix}link_2_l">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_2_l.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/collision/link_2_l.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0.35 0.0 0.4" rpy="0 0 0" />
+        <mass value="${mass2}" />
+        <inertia
+          ixx="0.16" ixy="0.0" ixz="0.04"
+          iyy="0.18" iyz="0.0"
+          izz="0.03" />
+      </inertial>
+    </link>
+    <link name="${prefix}link_3_u">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_3_u.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/collision/link_3_u.stl"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0.45 0.0 0.56" rpy="0 0 0" />
+        <mass value="${mass3}" />
+        <inertia
+          ixx="0.04" ixy="0.0" ixz="0.03"
+          iyy="0.06" iyz="0.0"
+          izz="0.02" />
+      </inertial>
+    </link>
+    <link name="${prefix}tool0"/>
+    <!-- end of link list -->
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1_s" type="revolute">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1_s"/>
+      <origin xyz="0.0 0.0 0.3165" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-152*deg}" upper="${152*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <joint name="${prefix}joint_2_l" type="revolute">
+      <parent link="${prefix}link_1_s"/>
+      <child link="${prefix}link_2_l"/>
+      <origin xyz="0.2 0.0 0.0585" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-147.5*deg}" upper="${147.5*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <joint name="${prefix}joint_3_u" type="prismatic">
+      <parent link="${prefix}link_2_l"/>
+      <child link="${prefix}link_3_u"/>
+      <origin xyz="0.25 0.0 -0.079" rpy="0 0 0"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="0" upper=".180" effort="2.0" velocity="1.0"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <joint name="${prefix}joint_3_u-tool0" type="revolute">
+      <parent link="${prefix}link_3_u"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-360.0*deg}" upper="${360.0*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <!--
+    <joint name="${prefix}joint_4_r" type="revolute">
+      <parent link="${prefix}link_2_l"/>
+      <child link="${prefix}link_3_u"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="${-360.0*deg}" upper="${360.0*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <joint name="${prefix}joint_4_r-tool0" type="fixed">
+      <parent link="${prefix}link_3_u"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    </joint>
+    -->
+    <!-- end of joint list -->
+
+    <!-- ROS base_link to Motoman World Coordinates transform -->
+    <link name="${prefix}base" />
+    <joint name="${prefix}base_link-base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base"/>
+    </joint>
+  </xacro:macro>
+</robot>
