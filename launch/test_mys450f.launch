@@ -1,7 +1,7 @@
 <launch>
 
   <arg name="gui" default="true" />
-  <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
+  <arg name="rvizconfig" default="$(find motoman_mys450f_support)/rviz/display.rviz" />
 
   <include file="$(find motoman_mys450f_support)/launch/load_mys450f.launch" />
   <param name="use_gui" value="$(arg gui)" />

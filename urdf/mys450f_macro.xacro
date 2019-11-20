@@ -14,12 +14,20 @@
 
   <xacro:macro name="motoman_mys450f" params="prefix">
 
+    <!-- Properties -->
+    <material name="yaskawa_blue">
+      <color rgba="0.12941 0.14902 0.74902 1" />
+    </material>
+
     <!-- link list -->
     <link name="${prefix}base_link">
       <visual>
         <geometry>
           <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/base_link.dae"/>
         </geometry>
+        <material name="white">
+          <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </visual>
       <collision>
         <geometry>
@@ -40,6 +48,7 @@
         <geometry>
           <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_1_s.dae"/>
         </geometry>
+        <material name="yaskawa_blue"/>
       </visual>
       <collision>
         <geometry>
@@ -60,6 +69,9 @@
         <geometry>
           <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_2_l.dae"/>
         </geometry>
+        <material name="grey">
+          <color rgba="0.3 0.3 0.3 1.0"/>
+        </material>
       </visual>
       <collision>
         <geometry>
@@ -80,6 +92,9 @@
         <geometry>
           <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_3_u.dae"/>
         </geometry>
+        <material name="black">
+          <color rgba="0.1 0.1 0.1 1.0"/>
+        </material>
       </visual>
       <collision>
         <geometry>
