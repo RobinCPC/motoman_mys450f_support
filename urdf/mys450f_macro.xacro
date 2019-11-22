@@ -18,16 +18,23 @@
     <material name="yaskawa_blue">
       <color rgba="0.12941 0.14902 0.74902 1" />
     </material>
+    <material name="white">
+      <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+    <material name="grey">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+    <material name="silver">
+      <color rgba="0.6 0.6 0.6 1.0"/>
+    </material>
 
     <!-- link list -->
     <link name="${prefix}base_link">
       <visual>
         <geometry>
-          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/base_link.dae"/>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/base_link.stl"/>
         </geometry>
-        <material name="white">
-          <color rgba="0.7 0.7 0.7 1.0"/>
-        </material>
+        <material name="white"/>
       </visual>
       <collision>
         <geometry>
@@ -46,7 +53,7 @@
     <link name="${prefix}link_1_s">
       <visual>
         <geometry>
-          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_1_s.dae"/>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_1_s.stl"/>
         </geometry>
         <material name="yaskawa_blue"/>
       </visual>
@@ -67,11 +74,9 @@
     <link name="${prefix}link_2_l">
       <visual>
         <geometry>
-          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_2_l.dae"/>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_2_l.stl"/>
         </geometry>
-        <material name="grey">
-          <color rgba="0.3 0.3 0.3 1.0"/>
-        </material>
+        <material name="white"/>
       </visual>
       <collision>
         <geometry>
@@ -90,11 +95,9 @@
     <link name="${prefix}link_3_u">
       <visual>
         <geometry>
-          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_3_u.dae"/>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/link_3_u.stl"/>
         </geometry>
-        <material name="black">
-          <color rgba="0.1 0.1 0.1 1.0"/>
-        </material>
+        <material name="silver"/>
       </visual>
       <collision>
         <geometry>
