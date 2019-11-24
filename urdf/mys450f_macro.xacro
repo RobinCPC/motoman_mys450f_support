@@ -114,6 +114,22 @@
       </inertial>
     </link>
     <link name="${prefix}tool0"/>
+    <link name="${prefix}logo_f">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/logo.stl" scale="1.0 1.0 1.2"/>
+        </geometry>
+        <material name="yaskawa_blue"/>
+      </visual>
+    </link>
+    <link name="${prefix}logo_b">
+      <visual>
+        <geometry>
+          <mesh filename="package://motoman_mys450f_support/meshes/mys450f/visual/logo.stl" scale="1.0 1.0 1.2"/>
+        </geometry>
+        <material name="yaskawa_blue"/>
+      </visual>
+    </link>
     <!-- end of link list -->
 
     <!-- joint list -->
@@ -149,21 +165,18 @@
       <limit lower="${-360.0*deg}" upper="${360.0*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
       <dynamics damping="0.7"/>
     </joint>
-    <!--
-    <joint name="${prefix}joint_4_r" type="revolute">
+    <joint name="${prefix}joint_2_l-logo_f" type="fixed">
       <parent link="${prefix}link_2_l"/>
-      <child link="${prefix}link_3_u"/>
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-      <axis xyz="0 0 -1"/>
-      <limit lower="${-360.0*deg}" upper="${360.0*deg}" effort="${acc*deg}" velocity="${acc*deg}"/>
-      <dynamics damping="0.7"/>
+      <child link="${prefix}logo_f"/>
+      <origin xyz="0.185 0.05 0.12" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
     </joint>
-    <joint name="${prefix}joint_4_r-tool0" type="fixed">
-      <parent link="${prefix}link_3_u"/>
-      <child link="${prefix}tool0"/>
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <joint name="${prefix}joint_2_l-logo_b" type="fixed">
+      <parent link="${prefix}link_2_l"/>
+      <child link="${prefix}logo_b"/>
+      <origin xyz="0.060 -0.05 0.12" rpy="0 0 ${180.0*deg}"/>
+      <axis xyz="0 0 1"/>
     </joint>
-    -->
     <!-- end of joint list -->
 
     <!-- ROS base_link to Motoman World Coordinates transform -->

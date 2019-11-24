@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
+        - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 595
@@ -86,6 +87,16 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        logo_b:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        logo_f:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         tool0:
           Alpha: 1
           Show Axes: false
@@ -111,6 +122,10 @@ Visualization Manager:
           Value: true
         link_3_u:
           Value: false
+        logo_b:
+          Value: false
+        logo_f:
+          Value: false
         tool0:
           Value: true
       Marker Scale: 0.5
@@ -127,6 +142,10 @@ Visualization Manager:
               link_3_u:
                 tool0:
                   {}
+              logo_b:
+                {}
+              logo_f:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
